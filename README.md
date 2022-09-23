@@ -27,6 +27,8 @@ The application we are building allows a franchisee to manage their inventory be
 
 The local `./api` folder contains a mock api that you can use to get started. If it restarts, you will lose all data.
 
+The wiremock is available on [Miro](https://miro.com/app/board/uXjVPTkJHVA=/?share_link_id=719872735173)
+
 ### Requirements
 
 - [ ] User can login with employee id and password
@@ -60,3 +62,4 @@ There are two tabbed screens in the application, the `Inventory` screen and the 
 - The reservations screen shows a list of reservations.
 - Each reservation has an image, name and the store it is reserved from.
 - The user can swipe left to confirm, or right to cancel the reservation.
+    
