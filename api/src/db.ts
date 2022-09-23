@@ -94,6 +94,12 @@ export const getTotalInventory = (itemId: string): number => {
   }, 0);
 };
 
+export const getTotalReservations = (itemId: string): number => {
+  return db.store.reduce((total, store) => {
+    return total + store.reservations.filter((r) => r.itemId === itemId).length;
+  }, 0);
+};
+
 export const getInventory = (): {
   category: Category;
   items: {
@@ -107,12 +113,7 @@ export const getInventory = (): {
       .filter((item) => item.categoryId === category.id)
       .map((item) => {
         const quantity = getTotalInventory(item.id);
-        const reservations = db.store.reduce((total, store) => {
-          return (
-            total +
-            store.reservations.filter((r) => r.itemId === item.id).length
-          );
-        }, 0);
+        const reservations = getTotalReservations(item.id);
         return { item, quantity, reservations };
       });
     return { category, items };
