@@ -53,7 +53,7 @@ app.post('/login', (req, res) => {
   res.status(401).json({ error: 'Invalid credentials' });
 });
 
-app.post('/inventory', protectedRoute, (req, res) => {
+app.get('/inventory', protectedRoute, (req, res) => {
   const inventory = db.getInventory();
   return res.json({ inventory });
 });
