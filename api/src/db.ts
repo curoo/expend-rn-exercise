@@ -9,8 +9,12 @@ type Database = {
 
 export const db: Database = {
   employee: [
-    { id: 'EP0001', password: 'p@ssw0rd', storeId: '1' },
+    { id: 'EP0001', password: 's3cr3t', storeId: '1' },
     { id: 'EP0002', password: 's3cr3t', storeId: '2' },
+    { id: 'EP0003', password: 's3cr3t', storeId: '2' },
+    { id: 'EP0004', password: 's3cr3t', storeId: '2' },
+    { id: 'EP0005', password: 's3cr3t', storeId: '2' },
+    { id: 'EP0006', password: 's3cr3t', storeId: '2' },
   ],
   category: [
     { id: '1', name: 'Consumables' },
@@ -22,13 +26,36 @@ export const db: Database = {
     {
       id: '1',
       categoryId: '2',
-      name: 'Bolts',
+      name: 'Break Pads',
       image: images.brakePad,
+    },
+    {
+      id: '2',
+      categoryId: '2',
+      name: 'Suspension Arm Repair Kit 3 PCS',
+      image: images.suspensionRepairKit,
+    },
+    {
+      id: '2',
+      categoryId: '3',
+      name: 'Electric Cable Cutter',
+      image: images.cableCutter,
     },
   ],
   store: [
-    { id: '1', name: 'Store 1', inventory: {}, reservations: [] },
-    { id: '2', name: 'Store 2', inventory: {}, reservations: [] },
+    {
+      id: '1',
+      name: 'Tully Branch',
+      inventory: {
+        '1': 40,
+      },
+      reservations: [
+        { itemId: '1', employeeId: 'EP0002' },
+        { itemId: '1', employeeId: 'EP0003' },
+        { itemId: '1', employeeId: 'EP0004' },
+        { itemId: '1', employeeId: 'EP0005' },
+      ],
+    },
   ],
 };
 
@@ -41,23 +68,25 @@ const get = <T extends keyof Database>(
   return value;
 };
 
-export const login = (id: string, password: string): Employee | null => {
+export const login = (
+  id: string,
+  password: string,
+): Omit<Employee, 'password'> | null => {
   const employee = db.employee.find((e) => e.id === id);
+
   if (!employee) return null;
-  if (employee.password !== password) return null;
-  return employee;
+
+  const { password: credential, ...user } = employee || {};
+  if (credential !== password) return null;
+
+  return user;
 };
 
-export const updateInventory = (
-  storeId: string,
-  itemId: string,
-  quantity: number,
-): void => {
+export const updateInventory = (storeId: string, itemId: string, quantity: number): void => {
   const store = get('store', storeId);
-  const item = get('item', itemId);
-
+  get('item', itemId); // assert the item exists
   store.inventory[itemId] = quantity;
-};
+}
 
 export const getTotalInventory = (itemId: string): number => {
   return db.store.reduce((total, store) => {

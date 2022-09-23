@@ -1,18 +1,17 @@
-type DBObject = {
+type Doc = {
   id: string;
 };
 
-type Employee = DBObject & {
+type Employee = Doc & {
   password: string;
   storeId: string;
 };
 
-type Category = DBObject & {
-  id: string;
+type Category = Doc & {
   name: string;
 };
 
-type Item = DBObject & {
+type Item = Doc & {
   name: string;
   image: string;
   categoryId: string;
@@ -23,8 +22,7 @@ type Reservation = {
   employeeId: string;
 };
 
-type Store = DBObject & {
-  id: string;
+type Store = Doc & {
   name: string;
   inventory: { [itemId: string]: number };
   reservations: Reservation[];

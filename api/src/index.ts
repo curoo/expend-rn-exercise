@@ -47,7 +47,7 @@ app.post('/login', (req, res) => {
 
   if (user) {
     Object.assign(req.session, { user });
-    res.json({ user });
+    return res.json({ user });
   }
 
   res.status(401).json({ error: 'Invalid credentials' });
