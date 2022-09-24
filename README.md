@@ -61,5 +61,5 @@ There are two tabbed screens in the application, the `Inventory` screen and the 
 
 - The reservations screen shows a list of reservations.
 - Each reservation has an image, name and the store it is reserved from.
-- The user can swipe left to confirm, or right to cancel the reservation.
+- The user can swipe right to confirm, or left to cancel the reservation.
     
