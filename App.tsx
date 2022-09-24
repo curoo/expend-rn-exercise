@@ -3,8 +3,8 @@ import { FontAwesome } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import InventoryScreen from './screens/InventoryScreen';
-import ReservationsScreen from './screens/ReservationsScreen';
+import InventoryScreen from './screens/Inventory';
+import ReservationsScreen from './screens/Reservations';
 
 const BottomTab = createBottomTabNavigator();
 

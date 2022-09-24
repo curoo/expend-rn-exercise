@@ -17,7 +17,7 @@ type Item = Doc & {
   categoryId: string;
 };
 
-type Reservation = {
+type Reservation = Doc & {
   itemId: string;
   employeeId: string;
 };

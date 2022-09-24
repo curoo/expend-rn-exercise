@@ -2,10 +2,10 @@ import * as React from 'react';
 import { View, Text } from 'react-native';
 import { StyleSheet } from 'react-native';
 
-export default function TabTwoScreen() {
+export default function Inventory() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
+      <Text style={styles.title}>Tab One</Text>
       <View style={styles.separator} />
     </View>
   );
